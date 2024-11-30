@@ -101,6 +101,12 @@ query='select nt.name as Name, nt.type as "Machine name", count(*) as "# of node
 count "$query"
 table "$query"
 
+# Bundles per entity type.
+title 2 '# of bundles per entity type'
+query='select entity_type as "Entity type", count(distinct(bundle)) as "Bundles" from field_config_instance fci group by entity_type order by entity_type;'
+count "$query"
+table "$query"
+
 # Entity type bundles and # of fields.
 title 2 'Entity type bundles and # of fields'
 query='select entity_type as "Entity type", bundle as "Bundle", count(id) as "# of fields" from field_config_instance fci group by bundle, entity_type order by entity_type, bundle;'

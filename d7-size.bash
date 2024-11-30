@@ -83,6 +83,12 @@ query='select type as "Type", count(name) as "Total enabled" from system where s
 count "$query"
 table "$query"
 
+# Disabled modules.
+title 2 'Disabled modules pending uninstall'
+query='select name,schema_version from system where status=0 and schema_version != -1;'
+count "$query"
+table "$query"
+
 # Roles and users.
 title 2 'Roles and users'
 query='select r.rid as "Role ID", r.name as "Role name", count(*) as "# of users" from users u left join users_roles ur on ur.uid=u.uid left join role r on r.rid=ur.rid group by(r.rid);'

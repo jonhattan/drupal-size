@@ -89,6 +89,11 @@ query='select name,schema_version from system where status=0 and schema_version 
 count "$query"
 table "$query"
 
+# of variables.
+title 2 '# of variables'
+query='select name from variable;'
+count "$query"
+
 # Roles and users.
 title 2 'Roles and users'
 query='select r.rid as "Role ID", r.name as "Role name", count(*) as "# of users" from users u left join users_roles ur on ur.uid=u.uid left join role r on r.rid=ur.rid group by(r.rid);'
